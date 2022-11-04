@@ -10,7 +10,8 @@ public class ThreadTests {
     public void testThreadPool(){
         //RunnableThread.callableTest();
         //RunnableThread.runnableTest();
-        RunnableThread.runnableResultTest();
+        //RunnableThread.runnableResultTest();
+        RunnableThread.runnableTransCallable();
 
     }
 }

@@ -80,6 +80,36 @@ public class RunnableThread {
 
     }
 
+    public static void runnableTransCallable(){
+        Person p = new Person(1,"name");
+        RunnableTask runnableTask = new RunnableTask(p);
+        // 转换
+        Callable<Person>  callable = Executors.callable(runnableTask,p);
+        Future<Person> personFuture = threadPoolExecutor.submit(callable);
+        try{
+            Person personRes = personFuture.get();
+            System.out.println(personRes);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+
+            }
+        };
+
+        Callable<Object> callable1 = Executors.callable(runnable);
+        Future<Object> future1 = threadPoolExecutor.submit(callable1);
+        try {
+            Object furRes = future1.get();
+            System.out.println(furRes);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
 }
 
 
