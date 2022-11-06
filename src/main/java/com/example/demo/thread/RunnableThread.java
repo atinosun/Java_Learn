@@ -66,9 +66,10 @@ public class RunnableThread {
         }
     }
 
-    public static void runnableResultTest(){
-        Person p = new Person(1,"person");
-        Future<Person> future = threadPoolExecutor.submit(new RunnableTask(p),p);
+    // runnable带返回值
+    public static void runnableResultTest() {
+        Person p = new Person(1, "person");
+        Future<Person> future = threadPoolExecutor.submit(new RunnableTask(p), p);
         try {
             System.out.println("future.get");
             Person personRes = future.get(900, TimeUnit.MILLISECONDS);
@@ -80,16 +81,17 @@ public class RunnableThread {
 
     }
 
-    public static void runnableTransCallable(){
-        Person p = new Person(1,"name");
+    // runnable 转换为 callable
+    public static void runnableTransCallable() {
+        Person p = new Person(1, "name");
         RunnableTask runnableTask = new RunnableTask(p);
         // 转换
-        Callable<Person>  callable = Executors.callable(runnableTask,p);
+        Callable<Person> callable = Executors.callable(runnableTask, p);
         Future<Person> personFuture = threadPoolExecutor.submit(callable);
-        try{
+        try {
             Person personRes = personFuture.get();
             System.out.println(personRes);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -105,11 +107,64 @@ public class RunnableThread {
         try {
             Object furRes = future1.get();
             System.out.println(furRes);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
+    // futureTask 包装 callable任务
+    public static void futureTaskPackCallable() {
+        int a = 1, b = 2;
+        Callable<Integer> callable = new Callable<Integer>() {
+            @Override
+            public Integer call() throws Exception {
+                return a + b;
+            }
+        };
+
+        FutureTask<Integer> futureTask = new FutureTask<>(callable);
+        // 使用单线程
+       /* new Thread(futureTask).start();
+        try {
+            Integer res1 = futureTask.get();
+            System.out.println("res1:" + res1);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }*/
+        // 使用线程池
+        threadPoolExecutor.submit(futureTask);
+        try {
+            Integer res2 = futureTask.get();
+            System.out.println("res2:" + res2);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    // futureTask 包装 runnable任务
+    public static void futureTaskPackRunnable(){
+        Person person = new Person(1,"person");
+        RunnableTask runnableTask = new RunnableTask(person);
+        FutureTask<Person> futureTask = new FutureTask<>(runnableTask,person);
+        // 使用单线程
+        new Thread(futureTask).start();
+        /*try {
+            Person person1 = futureTask.get();
+            System.out.println("person1:"+person1);
+        }catch (Exception e){
+            e.printStackTrace();
+        }*/
+        // 使用线程池
+        threadPoolExecutor.submit(futureTask);
+        try{
+            Person person2 = futureTask.get();
+            System.out.println("person2:"+person2);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+    }
 }
 
 

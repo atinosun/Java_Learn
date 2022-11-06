@@ -11,7 +11,9 @@ public class ThreadTests {
         //RunnableThread.callableTest();
         //RunnableThread.runnableTest();
         //RunnableThread.runnableResultTest();
-        RunnableThread.runnableTransCallable();
+        //RunnableThread.runnableTransCallable();
+        //RunnableThread.futureTaskPackCallable();
+        RunnableThread.futureTaskPackRunnable();
 
     }
 }
