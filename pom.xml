@@ -16,6 +16,7 @@
 	<properties>
 		<java.version>1.8</java.version>
         <springboot.version>2.7.5</springboot.version>
+        <lombok.version>1.18.4</lombok.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -35,6 +36,11 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
             <version>${springboot.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
         </dependency>
 	</dependencies>
 

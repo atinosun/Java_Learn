@@ -1,0 +1,3 @@
+2022-11-17 20:04:38.944  INFO 15846 --- [main] com.example.demo.ThreadTests             : Starting ThreadTests using Java 12.0.2 on atinosundeMacBook-Pro.local with PID 15846 (started by atinosun in /Users/atinosun/code/personal/Java_Learn)
+2022-11-17 20:04:38.945  INFO 15846 --- [main] com.example.demo.ThreadTests             : No active profile set, falling back to 1 default profile: "default"
+2022-11-17 20:04:40.181  INFO 15846 --- [main] com.example.demo.ThreadTests             : Started ThreadTests in 1.549 seconds (JVM running for 2.313)
